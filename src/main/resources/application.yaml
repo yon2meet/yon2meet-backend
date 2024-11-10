@@ -10,3 +10,5 @@ kakao:
 jwt:
   secret-key: FIXME
   token-validity-in-seconds: 86400
+server:
+  port: 5000
