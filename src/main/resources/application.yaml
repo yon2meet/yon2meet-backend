@@ -1,6 +1,8 @@
 spring:
   application:
     name: yon2meet-backend
+  liquibase:
+    change-log: classpath:/db/db.changelog-main.yaml
 kakao:
   client:
     id: FIXME
