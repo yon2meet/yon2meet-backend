@@ -40,7 +40,7 @@ class LoginFacade(
                 temporal = null,
             )
 
-        val userTemporalResponse = user.temporal!!.let {
+        val userTemporalResponse = user.temporal?.let {
             UserTemporalResponse(
                 username = it.username,
             )
