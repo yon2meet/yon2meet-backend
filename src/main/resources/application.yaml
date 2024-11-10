@@ -1,3 +1,7 @@
 spring:
   application:
     name: yon2meet-backend
+kakao:
+  client:
+    id: FIXME
+    secret: FIXME
