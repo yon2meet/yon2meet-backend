@@ -7,3 +7,6 @@ kakao:
   client:
     id: FIXME
     secret: FIXME
+jwt:
+  secret-key: FIXME
+  token-validity-in-seconds: 86400
