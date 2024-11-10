@@ -23,7 +23,7 @@ class JwtTokenService(
 ) {
     private val secretKey: SecretKey = Keys.hmacShaKeyFor(secretKey.toByteArray(StandardCharsets.UTF_8))
 
-    fun createToken(userId: Long?): String {
+    fun createToken(userId: Long): String {
         val claims: ClaimsBuilder = Jwts.claims()
         claims.add("userId", userId)
 
@@ -40,9 +40,10 @@ class JwtTokenService(
     }
 
     fun getUserId(token: String): Long {
-        return getClaims(token)
+        val userId = getClaims(token)
             .payload
-            .get("userId", Long::class.java)
+            .get("userId", Long::class.javaObjectType)
+        return userId
     }
 
     fun isExpired(token: String): Boolean {
