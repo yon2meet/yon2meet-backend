@@ -7,4 +7,6 @@ import team.yon2meet.backend.domain.user.entity.User
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
     fun findByKakaoUserId(kakaoUserId: String): User?
+
+    fun findByTemporalUsername(username: String): User?
 }
