@@ -1,6 +1,7 @@
 package team.yon2meet.backend.domain.user.entity
 
 import jakarta.persistence.Column
+import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.EnumType
@@ -34,6 +35,9 @@ class User(
     @Size(max = 255)
     @Column(name = "nickname")
     var nickname: String? = null,
+
+    @Embedded
+    var temporal: TemporalEmbeddable? = null,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
