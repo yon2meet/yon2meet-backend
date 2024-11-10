@@ -9,3 +9,5 @@ class Yon2meetBackendApplication
 fun main(args: Array<String>) {
     runApplication<Yon2meetBackendApplication>(*args)
 }
+
+const val BASE_PACKAGE = "team.yon2meet.backend"
