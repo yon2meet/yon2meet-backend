@@ -13,6 +13,6 @@ import java.util.Optional
 class JpaAuditingConfiguration {
     @Bean
     fun auditorAware(): AuditorAware<String> {
-        return AuditorAware { Optional.of("admin") }
+        return AuditorAware { Optional.of("yon2meet-backend") }
     }
 }
