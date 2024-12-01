@@ -1,5 +1,6 @@
 package team.yon2meet.backend.configuration.security
 
+import jakarta.servlet.DispatcherType
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
@@ -39,9 +40,9 @@ class SecurityConfiguration(
                     .accessDeniedHandler(jwtAccessDeniedHandler)
             }
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
-
             .authorizeHttpRequests { authorize ->
                 authorize
+                    .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                     .requestMatchers("/auth/login/kakao").permitAll()
                     .requestMatchers("/auth/login/temporal").permitAll()
                     .requestMatchers("/swagger-ui/**").permitAll()
