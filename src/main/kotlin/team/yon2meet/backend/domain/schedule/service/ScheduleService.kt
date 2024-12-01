@@ -16,16 +16,7 @@ class ScheduleService(
 ) {
     fun list(): List<ScheduleDto> {
         return scheduleRepository.findAll().map {
-            ScheduleDto(
-                id = it.id!!,
-                name = it.name,
-                startDate = it.startDate,
-                endDate = it.endDate,
-                startTime = it.startTime,
-                endTimeExclusive = it.endTimeExclusive,
-                numMaxMembers = it.numMaxMembers,
-                ownerId = it.owner.id!!,
-            )
+            ScheduleDto(it)
         }
     }
 
@@ -56,15 +47,6 @@ class ScheduleService(
             scheduleRepository.save(this)
         }
 
-        return ScheduleDto(
-            id = schedule.id!!,
-            name = schedule.name,
-            startDate = schedule.startDate,
-            endDate = schedule.endDate,
-            startTime = schedule.startTime,
-            endTimeExclusive = schedule.endTimeExclusive,
-            numMaxMembers = schedule.numMaxMembers,
-            ownerId = schedule.owner.id!!,
-        )
+        return ScheduleDto(schedule)
     }
 }
