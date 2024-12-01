@@ -3,6 +3,15 @@ spring:
     name: yon2meet-backend
   liquibase:
     change-log: classpath:/db/db.changelog-main.yaml
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  mvc:
+    log-request-details: true
+    log-resolved-exception: true
 kakao:
   client:
     id: FIXME
@@ -10,5 +19,30 @@ kakao:
 jwt:
   secret-key: FIXME
   token-validity-in-seconds: 86400
+logging:
+  level:
+    team:
+      yon2meet: TRACE
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: DEBUG
+      hibernate:
+        SQL: DEBUG
 server:
   port: 5000
+  tomcat:
+    remoteip:
+      protocol-header: x-forwarded-proto
+      remote-ip-header: x-forwarded-for
+    accesslog:
+      enabled: true
+      pattern: "%{X-Forwarded-For}i (, %h) %l %u %t &quot;%r&quot; %s %b"
+  error:
+    include-message: always
+    include-stacktrace: never
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
