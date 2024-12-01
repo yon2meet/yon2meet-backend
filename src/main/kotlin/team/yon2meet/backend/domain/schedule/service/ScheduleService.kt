@@ -1,6 +1,7 @@
 package team.yon2meet.backend.domain.schedule.service
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import team.yon2meet.backend.common.dto.ScheduleDto
 import team.yon2meet.backend.domain.schedule.entity.Schedule
 import team.yon2meet.backend.domain.schedule.repository.ScheduleRepository
@@ -28,6 +29,7 @@ class ScheduleService(
         }
     }
 
+    @Transactional
     fun create(
         userId: Long,
         name: String,
