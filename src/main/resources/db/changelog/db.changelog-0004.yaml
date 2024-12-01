@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0004-create-schedule-table
+      author: hajin-kim
+      changes:
+        - createTable:
+            tableName: schedule
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: start_date
+                  type: date
+              - column:
+                  name: end_date
+                  type: date
+              - column:
+                  name: start_time
+                  type: time
+              - column:
+                  name: end_time_exclusive
+                  type: time
+              - column:
+                  name: num_max_members
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: owner_id
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: updated_at
+                  type: timestamp
+              - column:
+                  name: updated_by
+                  type: varchar(255)
+        - addForeignKeyConstraint:
+            baseTableName: schedule
+            baseColumnNames: owner_id
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: fk_schedule_owner_id
