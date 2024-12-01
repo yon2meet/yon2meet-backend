@@ -37,6 +37,10 @@ class ScheduleService(
         endTimeExclusive: LocalTime,
         numMaxMembers: Int?,
     ): ScheduleDto {
+        if (numMaxMembers != null && numMaxMembers <= 0) {
+            throw IllegalArgumentException("정원은 1 이상이어야 합니다")
+        }
+
         val user = userRepository.findById(userId).orElseThrow()
         val schedule = Schedule(
             name = name,
