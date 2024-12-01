@@ -4,8 +4,6 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import team.yon2meet.backend.configuration.security.service.JwtTokenService
 import team.yon2meet.backend.domain.user.controller.response.LoginResponse
-import team.yon2meet.backend.domain.user.controller.response.UserResponse
-import team.yon2meet.backend.domain.user.controller.response.UserTemporalResponse
 import team.yon2meet.backend.domain.user.entity.TemporalEmbeddable
 import team.yon2meet.backend.domain.user.service.KakaoAuthService
 import team.yon2meet.backend.domain.user.service.KakaoOpenIdConnectService
@@ -40,24 +38,11 @@ class LoginFacade(
                 temporal = null,
             )
 
-        val userTemporalResponse = user.temporal?.let {
-            UserTemporalResponse(
-                username = it.username,
-            )
-        }
-        val userResponse = UserResponse(
-            id = user.id,
-            kakaoUserId = user.kakaoUserId,
-            nickname = user.nickname,
-            temporal = userTemporalResponse,
-        )
-
-
         val accessToken = jwtTokenService.createToken(user.id)
 
         return LoginResponse(
             accessToken = accessToken,
-            userResponse = userResponse,
+            userResponse = user,
         )
     }
 
@@ -77,23 +62,11 @@ class LoginFacade(
                 ),
             )
 
-        val userTemporalResponse = user.temporal!!.let {
-            UserTemporalResponse(
-                username = it.username,
-            )
-        }
-        val userResponse = UserResponse(
-            id = user.id,
-            kakaoUserId = user.kakaoUserId,
-            nickname = user.nickname,
-            temporal = userTemporalResponse,
-        )
-
         val accessToken = jwtTokenService.createToken(user.id)
 
         return LoginResponse(
             accessToken = accessToken,
-            userResponse = userResponse,
+            userResponse = user,
         )
     }
 }
