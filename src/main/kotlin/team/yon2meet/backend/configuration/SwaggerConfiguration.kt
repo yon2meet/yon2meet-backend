@@ -67,9 +67,9 @@ class SwaggerConfiguration {
         ### 필수 요청 헤더
 
         필요한 요청 헤더 2개는 다음과 같습니다. <br />
-        이때 "{토큰}" 대신 발급된 토큰을 넣어주세요. <br />
+        이때 `{토큰}` 대신 발급된 토큰을 넣어주세요. <br />
 
-        * "Authorization: Bearer {토큰}"
+        * "Authorization: Bearer `{토큰}`"
         * "Content-Type: application/json"
 
         ### cURL 예시
