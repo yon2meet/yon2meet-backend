@@ -1,5 +1,6 @@
 package team.yon2meet.backend.domain.schedule.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,6 +20,7 @@ class UserScheduleController(
     private val userScheduleService: UserScheduleService,
 ) {
     @GetMapping
+    @Operation(summary = "내가 참여한 일정 목록 조회")
     fun list(
         @UserId
         userId: Long,
@@ -30,6 +32,7 @@ class UserScheduleController(
     }
 
     @PostMapping("/{scheduleId}")
+    @Operation(summary = "일정 참여")
     fun create(
         @UserId
         userId: Long,
@@ -43,6 +46,7 @@ class UserScheduleController(
     }
 
     @DeleteMapping("/{scheduleId}")
+    @Operation(summary = "일정 참여 취소")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(
         @UserId
