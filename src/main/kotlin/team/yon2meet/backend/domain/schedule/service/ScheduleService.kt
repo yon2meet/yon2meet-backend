@@ -13,6 +13,7 @@ import java.time.LocalTime
 class ScheduleService(
     private val userRepository: UserRepository,
     private val scheduleRepository: ScheduleRepository,
+    private val userScheduleService: UserScheduleService,
 ) {
     fun list(): List<ScheduleDto> {
         return scheduleRepository.findAll().map {
@@ -46,6 +47,11 @@ class ScheduleService(
         ).run {
             scheduleRepository.save(this)
         }
+
+        userScheduleService.create(
+            userId = userId,
+            scheduleId = schedule.id!!,
+        )
 
         return ScheduleDto(schedule)
     }

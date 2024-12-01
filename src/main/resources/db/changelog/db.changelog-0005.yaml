@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0005-create-user-schedule-table
+      author: hajin-kim
+      changes:
+        - createTable:
+            tableName: user_schedule
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: bigint
+              - column:
+                  name: schedule_id
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: updated_at
+                  type: timestamp
+              - column:
+                  name: updated_by
+                  type: varchar(255)
+        - addForeignKeyConstraint:
+            baseTableName: user_schedule
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: fk_user_schedule_user_id
+        - addForeignKeyConstraint:
+            baseTableName: user_schedule
+            baseColumnNames: schedule_id
+            referencedTableName: schedule
+            referencedColumnNames: id
+            constraintName: fk_user_schedule_schedule_id
