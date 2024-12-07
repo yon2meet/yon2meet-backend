@@ -32,6 +32,7 @@ class UserScheduleController(
     }
 
     @PostMapping("/{scheduleId}")
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "일정 참여")
     fun create(
         @UserId
@@ -46,8 +47,8 @@ class UserScheduleController(
     }
 
     @DeleteMapping("/{scheduleId}")
-    @Operation(summary = "일정 참여 취소")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "일정 참여 취소")
     fun delete(
         @UserId
         userId: Long,
